@@ -1,0 +1,748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище gr691_baoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CurTRPO_Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_Id" Type="int" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Ports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="latitude" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="longitude" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Shedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="Ship_Id" Type="int" Nullable="false" />
+          <Property Name="Departure_Point_Id" Type="int" Nullable="false" />
+          <Property Name="First_Stop_Id" Type="int" />
+          <Property Name="Second_Stop_Id" Type="int" />
+          <Property Name="Arrival_Point_Id" Type="int" Nullable="false" />
+          <Property Name="Status_Id" Type="int" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="departure_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="arrival_time" Type="time" Precision="7" Nullable="false" />
+          <Property Name="price" Type="money" />
+          <Property Name="total_number_of_tickets" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Ship_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Ships">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ship_Type_Id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="number_of_seats" Type="nvarchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Trips">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="Shed_Id" Type="int" Nullable="false" />
+          <Property Name="number_of_tickets" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="total_price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Acc_Id" Type="int" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="middle_name" Type="nvarchar" MaxLength="30" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="phone_number" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CurTRPO_A__Role___0682EC34">
+          <End Role="CurTRPO_Role" Type="Self.CurTRPO_Role" Multiplicity="1" />
+          <End Role="CurTRPO_Accounts" Type="Self.CurTRPO_Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Accounts">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Arriv__41A3B202">
+          <End Role="CurTRPO_Ports" Type="Self.CurTRPO_Ports" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Arrival_Point_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Depar__3EC74557">
+          <End Role="CurTRPO_Ports" Type="Self.CurTRPO_Ports" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Departure_Point_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__First__3FBB6990">
+          <End Role="CurTRPO_Ports" Type="Self.CurTRPO_Ports" Multiplicity="0..1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="First_Stop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Secon__40AF8DC9">
+          <End Role="CurTRPO_Ports" Type="Self.CurTRPO_Ports" Multiplicity="0..1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Second_Stop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Ship___100C566E">
+          <End Role="CurTRPO_Ship_Type" Type="Self.CurTRPO_Ship_Type" Multiplicity="1" />
+          <End Role="CurTRPO_Ships" Type="Self.CurTRPO_Ships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ship_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Ships">
+              <PropertyRef Name="Ship_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Ship___3DD3211E">
+          <End Role="CurTRPO_Ships" Type="Self.CurTRPO_Ships" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ships">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Ship_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Statu__4297D63B">
+          <End Role="CurTRPO_Status" Type="Self.CurTRPO_Status" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__User___3CDEFCE5">
+          <End Role="CurTRPO_Users" Type="Self.CurTRPO_Users" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_T__Shed___4668671F">
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="1" />
+          <End Role="CurTRPO_Trips" Type="Self.CurTRPO_Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Shedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Trips">
+              <PropertyRef Name="Shed_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_T__User___457442E6">
+          <End Role="CurTRPO_Users" Type="Self.CurTRPO_Users" Multiplicity="1" />
+          <End Role="CurTRPO_Trips" Type="Self.CurTRPO_Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Trips">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_U__Acc_I__2D9CB955">
+          <End Role="CurTRPO_Accounts" Type="Self.CurTRPO_Accounts" Multiplicity="0..1" />
+          <End Role="CurTRPO_Users" Type="Self.CurTRPO_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Users">
+              <PropertyRef Name="Acc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище gr691_baoModelContainer">
+          <EntitySet Name="CurTRPO_Accounts" EntityType="Self.CurTRPO_Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurTRPO_Ports" EntityType="Self.CurTRPO_Ports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurTRPO_Role" EntityType="Self.CurTRPO_Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurTRPO_Shedule" EntityType="Self.CurTRPO_Shedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurTRPO_Ship_Type" EntityType="Self.CurTRPO_Ship_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurTRPO_Ships" EntityType="Self.CurTRPO_Ships" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurTRPO_Status" EntityType="Self.CurTRPO_Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurTRPO_Trips" EntityType="Self.CurTRPO_Trips" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CurTRPO_Users" EntityType="Self.CurTRPO_Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CurTRPO_A__Role___0682EC34" Association="Self.FK__CurTRPO_A__Role___0682EC34">
+            <End Role="CurTRPO_Role" EntitySet="CurTRPO_Role" />
+            <End Role="CurTRPO_Accounts" EntitySet="CurTRPO_Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Arriv__41A3B202" Association="Self.FK__CurTRPO_S__Arriv__41A3B202">
+            <End Role="CurTRPO_Ports" EntitySet="CurTRPO_Ports" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Depar__3EC74557" Association="Self.FK__CurTRPO_S__Depar__3EC74557">
+            <End Role="CurTRPO_Ports" EntitySet="CurTRPO_Ports" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__First__3FBB6990" Association="Self.FK__CurTRPO_S__First__3FBB6990">
+            <End Role="CurTRPO_Ports" EntitySet="CurTRPO_Ports" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Secon__40AF8DC9" Association="Self.FK__CurTRPO_S__Secon__40AF8DC9">
+            <End Role="CurTRPO_Ports" EntitySet="CurTRPO_Ports" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Ship___100C566E" Association="Self.FK__CurTRPO_S__Ship___100C566E">
+            <End Role="CurTRPO_Ship_Type" EntitySet="CurTRPO_Ship_Type" />
+            <End Role="CurTRPO_Ships" EntitySet="CurTRPO_Ships" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Ship___3DD3211E" Association="Self.FK__CurTRPO_S__Ship___3DD3211E">
+            <End Role="CurTRPO_Ships" EntitySet="CurTRPO_Ships" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Statu__4297D63B" Association="Self.FK__CurTRPO_S__Statu__4297D63B">
+            <End Role="CurTRPO_Status" EntitySet="CurTRPO_Status" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__User___3CDEFCE5" Association="Self.FK__CurTRPO_S__User___3CDEFCE5">
+            <End Role="CurTRPO_Users" EntitySet="CurTRPO_Users" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_T__Shed___4668671F" Association="Self.FK__CurTRPO_T__Shed___4668671F">
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+            <End Role="CurTRPO_Trips" EntitySet="CurTRPO_Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_T__User___457442E6" Association="Self.FK__CurTRPO_T__User___457442E6">
+            <End Role="CurTRPO_Users" EntitySet="CurTRPO_Users" />
+            <End Role="CurTRPO_Trips" EntitySet="CurTRPO_Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_U__Acc_I__2D9CB955" Association="Self.FK__CurTRPO_U__Acc_I__2D9CB955">
+            <End Role="CurTRPO_Accounts" EntitySet="CurTRPO_Accounts" />
+            <End Role="CurTRPO_Users" EntitySet="CurTRPO_Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gr691_baoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CurTRPO_Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_Id" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CurTRPO_Role" Relationship="Self.FK__CurTRPO_A__Role___0682EC34" FromRole="CurTRPO_Accounts" ToRole="CurTRPO_Role" />
+          <NavigationProperty Name="CurTRPO_Users" Relationship="Self.FK__CurTRPO_U__Acc_I__2D9CB955" FromRole="CurTRPO_Accounts" ToRole="CurTRPO_Users" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Ports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="latitude" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="longitude" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CurTRPO_Shedule" Relationship="Self.FK__CurTRPO_S__Arriv__41A3B202" FromRole="CurTRPO_Ports" ToRole="CurTRPO_Shedule" />
+          <NavigationProperty Name="CurTRPO_Shedule1" Relationship="Self.FK__CurTRPO_S__Depar__3EC74557" FromRole="CurTRPO_Ports" ToRole="CurTRPO_Shedule" />
+          <NavigationProperty Name="CurTRPO_Shedule2" Relationship="Self.FK__CurTRPO_S__First__3FBB6990" FromRole="CurTRPO_Ports" ToRole="CurTRPO_Shedule" />
+          <NavigationProperty Name="CurTRPO_Shedule3" Relationship="Self.FK__CurTRPO_S__Secon__40AF8DC9" FromRole="CurTRPO_Ports" ToRole="CurTRPO_Shedule" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CurTRPO_Accounts" Relationship="Self.FK__CurTRPO_A__Role___0682EC34" FromRole="CurTRPO_Role" ToRole="CurTRPO_Accounts" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Shedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <Property Name="Ship_Id" Type="Int32" Nullable="false" />
+          <Property Name="Departure_Point_Id" Type="Int32" Nullable="false" />
+          <Property Name="First_Stop_Id" Type="Int32" />
+          <Property Name="Second_Stop_Id" Type="Int32" />
+          <Property Name="Arrival_Point_Id" Type="Int32" Nullable="false" />
+          <Property Name="Status_Id" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="departure_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="arrival_time" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="total_number_of_tickets" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurTRPO_Ports" Relationship="Self.FK__CurTRPO_S__Arriv__41A3B202" FromRole="CurTRPO_Shedule" ToRole="CurTRPO_Ports" />
+          <NavigationProperty Name="CurTRPO_Ports1" Relationship="Self.FK__CurTRPO_S__Depar__3EC74557" FromRole="CurTRPO_Shedule" ToRole="CurTRPO_Ports" />
+          <NavigationProperty Name="CurTRPO_Ports2" Relationship="Self.FK__CurTRPO_S__First__3FBB6990" FromRole="CurTRPO_Shedule" ToRole="CurTRPO_Ports" />
+          <NavigationProperty Name="CurTRPO_Ports3" Relationship="Self.FK__CurTRPO_S__Secon__40AF8DC9" FromRole="CurTRPO_Shedule" ToRole="CurTRPO_Ports" />
+          <NavigationProperty Name="CurTRPO_Ships" Relationship="Self.FK__CurTRPO_S__Ship___3DD3211E" FromRole="CurTRPO_Shedule" ToRole="CurTRPO_Ships" />
+          <NavigationProperty Name="CurTRPO_Status" Relationship="Self.FK__CurTRPO_S__Statu__4297D63B" FromRole="CurTRPO_Shedule" ToRole="CurTRPO_Status" />
+          <NavigationProperty Name="CurTRPO_Users" Relationship="Self.FK__CurTRPO_S__User___3CDEFCE5" FromRole="CurTRPO_Shedule" ToRole="CurTRPO_Users" />
+          <NavigationProperty Name="CurTRPO_Trips" Relationship="Self.FK__CurTRPO_T__Shed___4668671F" FromRole="CurTRPO_Shedule" ToRole="CurTRPO_Trips" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Ship_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CurTRPO_Ships" Relationship="Self.FK__CurTRPO_S__Ship___100C566E" FromRole="CurTRPO_Ship_Type" ToRole="CurTRPO_Ships" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Ships">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ship_Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="number_of_seats" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurTRPO_Shedule" Relationship="Self.FK__CurTRPO_S__Ship___3DD3211E" FromRole="CurTRPO_Ships" ToRole="CurTRPO_Shedule" />
+          <NavigationProperty Name="CurTRPO_Ship_Type" Relationship="Self.FK__CurTRPO_S__Ship___100C566E" FromRole="CurTRPO_Ships" ToRole="CurTRPO_Ship_Type" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CurTRPO_Shedule" Relationship="Self.FK__CurTRPO_S__Statu__4297D63B" FromRole="CurTRPO_Status" ToRole="CurTRPO_Shedule" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Trips">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <Property Name="Shed_Id" Type="Int32" Nullable="false" />
+          <Property Name="number_of_tickets" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="total_price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="CurTRPO_Shedule" Relationship="Self.FK__CurTRPO_T__Shed___4668671F" FromRole="CurTRPO_Trips" ToRole="CurTRPO_Shedule" />
+          <NavigationProperty Name="CurTRPO_Users" Relationship="Self.FK__CurTRPO_T__User___457442E6" FromRole="CurTRPO_Trips" ToRole="CurTRPO_Users" />
+        </EntityType>
+        <EntityType Name="CurTRPO_Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Acc_Id" Type="Int32" />
+          <Property Name="first_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="middle_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone_number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CurTRPO_Accounts" Relationship="Self.FK__CurTRPO_U__Acc_I__2D9CB955" FromRole="CurTRPO_Users" ToRole="CurTRPO_Accounts" />
+          <NavigationProperty Name="CurTRPO_Shedule" Relationship="Self.FK__CurTRPO_S__User___3CDEFCE5" FromRole="CurTRPO_Users" ToRole="CurTRPO_Shedule" />
+          <NavigationProperty Name="CurTRPO_Trips" Relationship="Self.FK__CurTRPO_T__User___457442E6" FromRole="CurTRPO_Users" ToRole="CurTRPO_Trips" />
+        </EntityType>
+        <Association Name="FK__CurTRPO_A__Role___0682EC34">
+          <End Role="CurTRPO_Role" Type="Self.CurTRPO_Role" Multiplicity="1" />
+          <End Role="CurTRPO_Accounts" Type="Self.CurTRPO_Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Accounts">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_U__Acc_I__2D9CB955">
+          <End Role="CurTRPO_Accounts" Type="Self.CurTRPO_Accounts" Multiplicity="0..1" />
+          <End Role="CurTRPO_Users" Type="Self.CurTRPO_Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Accounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Users">
+              <PropertyRef Name="Acc_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Arriv__41A3B202">
+          <End Role="CurTRPO_Ports" Type="Self.CurTRPO_Ports" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Arrival_Point_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Depar__3EC74557">
+          <End Role="CurTRPO_Ports" Type="Self.CurTRPO_Ports" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Departure_Point_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__First__3FBB6990">
+          <End Role="CurTRPO_Ports" Type="Self.CurTRPO_Ports" Multiplicity="0..1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="First_Stop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Secon__40AF8DC9">
+          <End Role="CurTRPO_Ports" Type="Self.CurTRPO_Ports" Multiplicity="0..1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ports">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Second_Stop_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Ship___3DD3211E">
+          <End Role="CurTRPO_Ships" Type="Self.CurTRPO_Ships" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ships">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Ship_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Statu__4297D63B">
+          <End Role="CurTRPO_Status" Type="Self.CurTRPO_Status" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__User___3CDEFCE5">
+          <End Role="CurTRPO_Users" Type="Self.CurTRPO_Users" Multiplicity="1" />
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Shedule">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_T__Shed___4668671F">
+          <End Role="CurTRPO_Shedule" Type="Self.CurTRPO_Shedule" Multiplicity="1" />
+          <End Role="CurTRPO_Trips" Type="Self.CurTRPO_Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Shedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Trips">
+              <PropertyRef Name="Shed_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_S__Ship___100C566E">
+          <End Role="CurTRPO_Ship_Type" Type="Self.CurTRPO_Ship_Type" Multiplicity="1" />
+          <End Role="CurTRPO_Ships" Type="Self.CurTRPO_Ships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Ship_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Ships">
+              <PropertyRef Name="Ship_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CurTRPO_T__User___457442E6">
+          <End Role="CurTRPO_Users" Type="Self.CurTRPO_Users" Multiplicity="1" />
+          <End Role="CurTRPO_Trips" Type="Self.CurTRPO_Trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurTRPO_Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CurTRPO_Trips">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="gr691_baoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CurTRPO_Accounts" EntityType="Self.CurTRPO_Accounts" />
+          <EntitySet Name="CurTRPO_Ports" EntityType="Self.CurTRPO_Ports" />
+          <EntitySet Name="CurTRPO_Role" EntityType="Self.CurTRPO_Role" />
+          <EntitySet Name="CurTRPO_Shedule" EntityType="Self.CurTRPO_Shedule" />
+          <EntitySet Name="CurTRPO_Ship_Type" EntityType="Self.CurTRPO_Ship_Type" />
+          <EntitySet Name="CurTRPO_Ships" EntityType="Self.CurTRPO_Ships" />
+          <EntitySet Name="CurTRPO_Status" EntityType="Self.CurTRPO_Status" />
+          <EntitySet Name="CurTRPO_Trips" EntityType="Self.CurTRPO_Trips" />
+          <EntitySet Name="CurTRPO_Users" EntityType="Self.CurTRPO_Users" />
+          <AssociationSet Name="FK__CurTRPO_A__Role___0682EC34" Association="Self.FK__CurTRPO_A__Role___0682EC34">
+            <End Role="CurTRPO_Role" EntitySet="CurTRPO_Role" />
+            <End Role="CurTRPO_Accounts" EntitySet="CurTRPO_Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_U__Acc_I__2D9CB955" Association="Self.FK__CurTRPO_U__Acc_I__2D9CB955">
+            <End Role="CurTRPO_Accounts" EntitySet="CurTRPO_Accounts" />
+            <End Role="CurTRPO_Users" EntitySet="CurTRPO_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Arriv__41A3B202" Association="Self.FK__CurTRPO_S__Arriv__41A3B202">
+            <End Role="CurTRPO_Ports" EntitySet="CurTRPO_Ports" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Depar__3EC74557" Association="Self.FK__CurTRPO_S__Depar__3EC74557">
+            <End Role="CurTRPO_Ports" EntitySet="CurTRPO_Ports" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__First__3FBB6990" Association="Self.FK__CurTRPO_S__First__3FBB6990">
+            <End Role="CurTRPO_Ports" EntitySet="CurTRPO_Ports" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Secon__40AF8DC9" Association="Self.FK__CurTRPO_S__Secon__40AF8DC9">
+            <End Role="CurTRPO_Ports" EntitySet="CurTRPO_Ports" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Ship___3DD3211E" Association="Self.FK__CurTRPO_S__Ship___3DD3211E">
+            <End Role="CurTRPO_Ships" EntitySet="CurTRPO_Ships" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Statu__4297D63B" Association="Self.FK__CurTRPO_S__Statu__4297D63B">
+            <End Role="CurTRPO_Status" EntitySet="CurTRPO_Status" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__User___3CDEFCE5" Association="Self.FK__CurTRPO_S__User___3CDEFCE5">
+            <End Role="CurTRPO_Users" EntitySet="CurTRPO_Users" />
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_T__Shed___4668671F" Association="Self.FK__CurTRPO_T__Shed___4668671F">
+            <End Role="CurTRPO_Shedule" EntitySet="CurTRPO_Shedule" />
+            <End Role="CurTRPO_Trips" EntitySet="CurTRPO_Trips" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_S__Ship___100C566E" Association="Self.FK__CurTRPO_S__Ship___100C566E">
+            <End Role="CurTRPO_Ship_Type" EntitySet="CurTRPO_Ship_Type" />
+            <End Role="CurTRPO_Ships" EntitySet="CurTRPO_Ships" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CurTRPO_T__User___457442E6" Association="Self.FK__CurTRPO_T__User___457442E6">
+            <End Role="CurTRPO_Users" EntitySet="CurTRPO_Users" />
+            <End Role="CurTRPO_Trips" EntitySet="CurTRPO_Trips" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище gr691_baoModelContainer" CdmEntityContainer="gr691_baoEntities">
+          <EntitySetMapping Name="CurTRPO_Accounts">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Accounts">
+              <MappingFragment StoreEntitySet="CurTRPO_Accounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurTRPO_Ports">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Ports">
+              <MappingFragment StoreEntitySet="CurTRPO_Ports">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurTRPO_Role">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Role">
+              <MappingFragment StoreEntitySet="CurTRPO_Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurTRPO_Shedule">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Shedule">
+              <MappingFragment StoreEntitySet="CurTRPO_Shedule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Ship_Id" ColumnName="Ship_Id" />
+                <ScalarProperty Name="Departure_Point_Id" ColumnName="Departure_Point_Id" />
+                <ScalarProperty Name="First_Stop_Id" ColumnName="First_Stop_Id" />
+                <ScalarProperty Name="Second_Stop_Id" ColumnName="Second_Stop_Id" />
+                <ScalarProperty Name="Arrival_Point_Id" ColumnName="Arrival_Point_Id" />
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="departure_time" ColumnName="departure_time" />
+                <ScalarProperty Name="arrival_time" ColumnName="arrival_time" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="total_number_of_tickets" ColumnName="total_number_of_tickets" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurTRPO_Ship_Type">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Ship_Type">
+              <MappingFragment StoreEntitySet="CurTRPO_Ship_Type">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurTRPO_Ships">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Ships">
+              <MappingFragment StoreEntitySet="CurTRPO_Ships">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ship_Type_Id" ColumnName="Ship_Type_Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="number_of_seats" ColumnName="number_of_seats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurTRPO_Status">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Status">
+              <MappingFragment StoreEntitySet="CurTRPO_Status">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurTRPO_Trips">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Trips">
+              <MappingFragment StoreEntitySet="CurTRPO_Trips">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Shed_Id" ColumnName="Shed_Id" />
+                <ScalarProperty Name="number_of_tickets" ColumnName="number_of_tickets" />
+                <ScalarProperty Name="total_price" ColumnName="total_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurTRPO_Users">
+            <EntityTypeMapping TypeName="gr691_baoModel.CurTRPO_Users">
+              <MappingFragment StoreEntitySet="CurTRPO_Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Acc_Id" ColumnName="Acc_Id" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="middle_name" ColumnName="middle_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

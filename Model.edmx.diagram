@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d949289e7b84be0889b8b7fb6f01271" Name="Diagram1">
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Accounts" Width="1.5" PointX="1.5" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Ports" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Role" Width="1.5" PointX="1.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Shedule" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Ship_Type" Width="1.5" PointX="1.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Ships" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Status" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Trips" Width="1.5" PointX="5.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gr691_baoModel.CurTRPO_Users" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_A__Role___0682EC34" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_U__Acc_I__2D9CB955" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_S__Arriv__41A3B202" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_S__Depar__3EC74557" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_S__First__3FBB6990" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_S__Secon__40AF8DC9" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_S__Ship___3DD3211E" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_S__Statu__4297D63B" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_S__User___3CDEFCE5" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_T__Shed___4668671F" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_S__Ship___100C566E" ManuallyRouted="false" />
+        <AssociationConnector Association="gr691_baoModel.FK__CurTRPO_T__User___457442E6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

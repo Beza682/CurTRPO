@@ -1,0 +1,20 @@
+﻿<Window x:Class="CurTRPO.Registration"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CurTRPO"
+        mc:Ignorable="d"
+        Title="Регистрация" Height="400" Width="334">
+    <Grid>
+        <TextBox Name="Reg_last_Name" ToolTip="В поле допускается только кириллица." PreviewTextInput="Cyr_Check"  materialDesign:HintAssist.Hint="Фамилия" MaxLength="30" Height="30" Margin="30,63,30,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Name="Reg_First_Name" ToolTip="В поле допускается только кириллица." PreviewTextInput="Cyr_Check" materialDesign:HintAssist.Hint="Имя" MaxLength="30" Height="30" Margin="30,98,30,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Name="Reg_Mid_Name" ToolTip="Не обязательно для заполннения. В поле допускается только кириллица." PreviewTextInput="Cyr_Check" materialDesign:HintAssist.Hint="Отчество" MaxLength="30" Height="30" Margin="30,133,30,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Name="Reg_Phone" ToolTip="В поле допускается цифры от 0 до 9." PreviewTextInput="Num_Check" materialDesign:HintAssist.Hint="Номер телефона" MaxLength="11" Height="30" Margin="30,168,30,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox Name="Reg_Login" ToolTip="В поле допускается латиница и цифры от 0 до 9." PreviewTextInput="Acc_Check" materialDesign:HintAssist.Hint="Логин" MaxLength="30" Height="30" Margin="30,204,30,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <PasswordBox Name="Reg_Password" ToolTip="В поле допускается латиница и цифры от 0 до 9." PreviewTextInput="Acc_Check" materialDesign:HintAssist.Hint="Пароль" MaxLength="30" Margin="30,239,30,0" Height="30" VerticalAlignment="Top"/>
+        <Button Content="Зарегистрировать пользователя" IsDefault="True" Margin="30,301,30,0" VerticalAlignment="Top" Click="Reg_Buttom"/>
+        <Label Content="Полностью заполните форму" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Margin="10,10,10,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
